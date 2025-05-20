@@ -5,12 +5,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Текстовий Редактор" MinHeight="200" Height="300" MinWidth="300" Width="600">
+        Title="Текстовий редактор" MinHeight="200" Height="300" MinWidth="300" Width="600">
 
     <Window.Resources>
         <LinearGradientBrush x:Key="LinearPanelBrush">
             <GradientStop Color="Yellow" Offset="0"></GradientStop>
-            <GradientStop Color="Aqua" Offset="0.5"></GradientStop>
+            <GradientStop Color="Green" Offset="0.5"></GradientStop>
             <GradientStop Color="Yellow" Offset="0.8"></GradientStop>
         </LinearGradientBrush>
 
@@ -26,32 +26,43 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+
         <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="2" CornerRadius="10">
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Button Width="50" Height="50">
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Background="{StaticResource LinearPanelBrush}">
+                <Button Width="50" Height="50" Command="ApplicationCommands.Open">
                     <Image ToolTip="Open" Source="./imgs/1.png"/>
                 </Button>
-                <Button Width="50" Height="50">
+                <Button Width="50" Height="50" Command="ApplicationCommands.Close">
                     <Image ToolTip="Clear" Source="./imgs/2.png"/>
                 </Button>
-                <Button Width="50" Height="50">
+                <Button Width="50" Height="50" Command="ApplicationCommands.Copy" CommandTarget="{Binding ElementName=MainTextBox}">
                     <Image ToolTip="Copy" Source="./imgs/3.png"/>
                 </Button>
-                <Button Width="50" Height="50">
+                <Button Width="50" Height="50" Command="ApplicationCommands.Paste" CommandTarget="{Binding ElementName=MainTextBox}">
                     <Image ToolTip="Paste" Source="./imgs/4.png"/>
                 </Button>
             </StackPanel>
         </Border>
+
         <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="2" CornerRadius="10">
-            <Grid>
+            <Grid Background="{StaticResource LinearPanelBrush}">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBox Grid.Row="0" Margin="10" TextWrapping="Wrap" 
-VerticalScrollBarVisibility="Visible"/>
+
+                <TextBox x:Name="MainTextBox"
+                         Grid.Row="0"
+                         Margin="10"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Visible"
+                         FontSize="{Binding ElementName=FontSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+
                 <DockPanel Grid.Row="1" Margin="10 5 10 10">
-                    <Button Width="30" DockPanel.Dock="Bottom" Content="OK" />
+                    <Label>Розмір шрифту:</Label>
+                    <Slider Margin="4" MinWidth="100" Name="FontSlider" Maximum="100" Minimum="12"/>
+                    <Button Width="30" DockPanel.Dock="Bottom" Style="{x:Null}" Content="OK" ToolTip="Save" Command="ApplicationCommands.Save"/>
                 </DockPanel>
             </Grid>
         </Border>
