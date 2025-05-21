@@ -1,0 +1,60 @@
+﻿<Window x:Class="Labka3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Digital Alarm Clock" 
+        Height="300" Width="350"
+        WindowStyle="None" 
+        WindowStartupLocation="CenterScreen" 
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Border CornerRadius="20" BorderBrush="#4CAF50" BorderThickness="3" Background="#333333">
+        <StackPanel>
+            <StackPanel Margin="20,15,20,10" HorizontalAlignment="Center">
+                <TextBlock Text="DIGITAL ALARM CLOCK" 
+                           Foreground="#4CAF50"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,5">
+                    <TextBlock x:Name="HourLabel" Text="00" Style="{StaticResource TimeTextStyle}"/>
+                    <TextBlock Text=":" Style="{StaticResource TimeSeparatorStyle}"/>
+                    <TextBlock x:Name="MinuteLabel" Text="00" Style="{StaticResource TimeTextStyle}"/>
+                    <TextBlock Text=":" Style="{StaticResource TimeSeparatorStyle}"/>
+                    <TextBlock x:Name="SecondLabel" Text="00" Style="{StaticResource TimeTextStyle}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock x:Name="DayLabel" Text="MON" Style="{StaticResource DateTextStyle}"/>
+                    <TextBlock Text=" | " Style="{StaticResource DateTextStyle}"/>
+                    <TextBlock x:Name="DateLabel" Text="01/01/2023" Style="{StaticResource DateTextStyle}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="20,10,20,20">
+                <Button x:Name="SetAlarmButton" 
+                        Content="Set Alarm" 
+                        Click="SetAlarm_Click"
+                        Style="{StaticResource GreenButtonStyle}"/>
+
+                <TextBox x:Name="AlarmDescription" 
+                         Margin="0,10,0,5"
+                         Padding="5"
+                         Background="#444444"
+                         Foreground="White"
+                         BorderBrush="#4CAF50"
+                         Text="Alarm description"/>
+
+                <Button x:Name="ExitButton" 
+                        Content="Exit" 
+                        Click="Exit_Click"
+                        Style="{StaticResource RedButtonStyle}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>
